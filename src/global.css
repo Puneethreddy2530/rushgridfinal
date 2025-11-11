@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base dark theme */
+:root {
+  /* Colors */
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: rgba(20, 20, 20, 0.6);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --border-glow: rgba(213, 0, 50, 0.5);
+  
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  
+  --accent-red: #d50032;
+  --accent-purple: #8b5cf6;
+  --accent-blue: #3b82f6;
+  --accent-green: #10b981;
+  
+  /* Typography */
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Borders */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow-red: 0 0 20px rgba(213, 0, 50, 0.4);
+  --shadow-glow-purple: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Particle animation */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: translateY(-20px) translateX(10px); 
+    opacity: 0.6; 
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-red);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Punching red button animation */
+@keyframes punch {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(213, 0, 50, 0.4);
+  }
+  50% { 
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(213, 0, 50, 0.8), 0 0 60px rgba(213, 0, 50, 0.4);
+  }
+}
+
+.btn-punch {
+  animation: punch 2s ease-in-out infinite;
+}

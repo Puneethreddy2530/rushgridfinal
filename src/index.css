@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base dark theme & variables */
+:root { 
+  color-scheme: dark;
+  --red: #d50032;
+  --blue: #3b4cca;
+  --gold: #f6c84c;
+  --bg: #0d0d0d;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #ffffffde;
+  font-family: 'Orbitron', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Headings use Orbitron */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Landing layout */
+.landing-root { position: relative; min-height: 100vh; overflow: hidden; color: #fff; }
+.landing-header { position: relative; z-index: 10; padding: 6rem 2rem; text-align: center; }
+
+/* Ombre logo with golden glow */
+.logo-wrap { margin-bottom: 1rem; }
+.logo-ombre {
+  font-size: 4rem;
+  font-weight: 900;
+  display: inline-block;
+  background: linear-gradient(90deg, #d50032 0%, #ff9500 45%, #ffd54a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.4rem;
+  filter: saturate(1.2);
+}
+.logo-ombre::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  z-index: -1;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at center, rgba(246,200,76,0.18), rgba(246,200,76,0.05) 40%, transparent 60%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+/* Tagline */
+.tagline { color: rgba(255,255,255,0.72); max-width: 900px; margin: 0 auto 2rem; font-size: 1.05rem; }
+
+/* Feature boxes */
+.feature-row { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem; }
+.feature-box {
+  min-width: 200px;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background: rgba(20,20,20,0.6);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: box-shadow .18s ease, transform .12s ease, border-color .18s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  font-weight:700;
+  position: relative;
+  overflow: visible;
+  padding-left: 2.4rem; /* room for accent dot */
+}
+
+/* small colored indicator on the left */
+.feature-box::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--feat-color, #fff);
+  box-shadow: 0 0 12px rgba(255,255,255,0.12);
+  z-index: 5;
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+
+/* per-variant color variables and subtle default border tints */
+.box-blue  { --feat-color: var(--blue);  border: 1px solid rgba(59,76,202,0.22); }
+.box-red   { --feat-color: var(--red);   border: 1px solid rgba(213,0,50,0.26); }
+.box-gold  { --feat-color: var(--gold);  border: 1px solid rgba(246,200,76,0.26); }
+
+/* Ensure the left accent dot matches the border color */
+.box-blue::before  { background: var(--blue);  box-shadow: 0 0 20px rgba(59,76,202,0.25); }
+.box-red::before   { background: var(--red);   box-shadow: 0 0 20px rgba(213,0,50,0.28); }
+.box-gold::before  { background: var(--gold);  box-shadow: 0 0 22px rgba(246,200,76,0.30); }
+
+/* stronger hover glows with matching colored outer glow + inner sheen */
+.box-blue:hover {
+  box-shadow:
+    0 28px 80px rgba(59,76,202,0.20),
+    inset 0 0 30px rgba(59,76,202,0.06);
+  border-color: rgba(59,76,202,0.6);
+  transform: translateY(-6px);
+}
+.box-blue:hover::before {
+  box-shadow: 0 0 28px rgba(59,76,202,0.45);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.box-red:hover {
+  box-shadow:
+    0 28px 80px rgba(213,0,50,0.22),
+    inset 0 0 30px rgba(213,0,50,0.06);
+  border-color: rgba(213,0,50,0.6);
+  transform: translateY(-6px);
+}
+.box-red:hover::before {
+  box-shadow: 0 0 28px rgba(213,0,50,0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.box-gold:hover {
+  box-shadow:
+    0 28px 80px rgba(246,200,76,0.28),
+    inset 0 0 36px rgba(246,200,76,0.08);
+  border-color: rgba(246,200,76,0.7);
+  transform: translateY(-6px);
+}
+.box-gold:hover::before {
+  box-shadow: 0 0 36px rgba(246,200,76,0.55);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Launch button - red glow */
+.launch-btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ff3b4a 0%, var(--red) 100%);
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow:
+    0 14px 48px rgba(213,0,50,0.45),
+    0 0 60px rgba(213,0,50,0.20),
+    inset 0 -4px 14px rgba(0,0,0,0.25);
+  transition: transform .12s ease, box-shadow .18s ease, filter .12s;
+}
+.launch-btn:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 30px 100px rgba(213,0,50,0.7),
+    0 0 90px rgba(213,0,50,0.35),
+    inset 0 -6px 22px rgba(0,0,0,0.32);
+  filter: saturate(1.05);
+}
+
+/* Launch button: solid red box + stronger glow */
+.btn-punch {
+  background: linear-gradient(180deg, #ff4b56 0%, #d50032 100%);
+  border: 1px solid rgba(213,0,50,0.9);
+  color: #fff;
+  box-shadow:
+    0 18px 60px rgba(213,0,50,0.45),
+    0 0 80px rgba(213,0,50,0.18),
+    inset 0 -6px 18px rgba(0,0,0,0.28);
+}
+.btn-punch:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 36px 120px rgba(213,0,50,0.72),
+    0 0 120px rgba(213,0,50,0.34),
+    inset 0 -10px 28px rgba(0,0,0,0.36);
+}
+
+/* floating dots layer */
+.dots-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.dot {
+  position: absolute;
+  border-radius: 50%;
+  /* brighter gradient and stronger glow */
+  background: radial-gradient(circle at 30% 30%, rgba(255,120,120,0.98), rgba(213,0,50,0.9));
+  box-shadow: 0 0 10px rgba(255,90,90,0.95), 0 0 28px rgba(213,0,50,0.22);
+  mix-blend-mode: screen;
+  transform-origin: center;
+  will-change: transform, opacity;
+  filter: blur(0.6px); /* reduce blur so dots are visible */
+  animation-name: floatDot;
+  animation-duration: 4s; /* default, will be overridden by inline style */
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* smoother back-and-forth */
+}
+
+/* increased motion amplitude and slight scale on middle frame */
+@keyframes floatDot {
+  0%   { transform: translate3d(0,0,0) scale(1); opacity: 0.12; }
+  50%  { transform: translate3d(12px,-36px,0) scale(1.18); opacity: 0.42; }
+  100% { transform: translate3d(-8px,6px,0) scale(1); opacity: 0.10; }
+}
+
+/* ensure UI stays above dots */
+.landing-header, .gradient-text, .glass-card, .launch-box, .btn-punch { z-index: 10; }
+
+/* subtle focus outline for keyboard users */
+.feature-box:focus, .launch-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.02), 0 18px 50px rgba(0,0,0,0.45);
+}
+
+/* ensure accent dot sits above background but below text */
+.feature-box * { position: relative; z-index: 6; }
+
+/* small responsive tweaks */
+@media (max-width:640px){
+  .logo-ombre { font-size: 2.2rem; }
+  .feature-row { gap: 0.6rem; }
+  .feature-box { min-width: 140px; padding: 0.8rem; font-size: 0.9rem; }
+}
